@@ -48,13 +48,20 @@
       const dbref = ref(db);
       get(child(dbref, "Test/")).then((answer) => {
         status = answer.val().LED;
+        if (status) {
+          document.getElementById("submit").innerHTML = "Apagar";
+          document.getElementById("submit").setAttribute("class", "active");
+        } else {
+          document.getElementById("submit").innerHTML = "Encender";
+          document.getElementById("submit").setAttribute("class", "inactive");
+        }
       });
 
-      if (status) {
-        document.getElementById("submit").setAttribute("active", "false");
-      } else {
-        document.getElementById("submit").setAttribute("active", "true");
-      }
+      // if (status) {
+      //   document.getElementById("submit").setAttribute("class", "active");
+      // } else {
+      //   document.getElementById("submit").setAttribute("class", "inactive");
+      // }
 
       document.getElementById("submit").addEventListener("click", function (e) {
         e.preventDefault();
@@ -64,8 +71,10 @@
         });
         if (status) {
           document.getElementById("submit").innerHTML = "Apagar";
+          document.getElementById("submit").setAttribute("class", "active");
         } else {
           document.getElementById("submit").innerHTML = "Encender";
+          document.getElementById("submit").setAttribute("class", "inactive");
         }
       });
     </script>
