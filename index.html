@@ -48,20 +48,8 @@
       const dbref = ref(db);
       get(child(dbref, "Test/")).then((answer) => {
         status = answer.val().LED;
-        if (status) {
-          document.getElementById("submit").innerHTML = "Apagar";
-          document.getElementById("submit").setAttribute("class", "active");
-        } else {
-          document.getElementById("submit").innerHTML = "Encender";
-          document.getElementById("submit").setAttribute("class", "inactive");
-        }
+        handleButton(status);
       });
-
-      // if (status) {
-      //   document.getElementById("submit").setAttribute("class", "active");
-      // } else {
-      //   document.getElementById("submit").setAttribute("class", "inactive");
-      // }
 
       document.getElementById("submit").addEventListener("click", function (e) {
         e.preventDefault();
@@ -69,6 +57,10 @@
         set(ref(db, "Test/"), {
           LED: status,
         });
+        handleButton(status);
+      });
+
+      function handleButton(status) {
         if (status) {
           document.getElementById("submit").innerHTML = "Apagar";
           document.getElementById("submit").setAttribute("class", "active");
@@ -76,7 +68,7 @@
           document.getElementById("submit").innerHTML = "Encender";
           document.getElementById("submit").setAttribute("class", "inactive");
         }
-      });
+      }
     </script>
   </body>
 </html>

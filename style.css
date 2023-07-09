@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-size: 72px;
+  font-size: 70px;
   font-family: sans-serif;
   box-sizing: border-box;
 }
@@ -21,7 +21,6 @@ button {
 }
 .active {
   background: yellow;
-  /* background: #0cc0df; */
   color: black;
 }
 .inactive {
