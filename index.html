@@ -53,23 +53,23 @@
       const app = initializeApp(firebaseConfig);
 
       //get ref to database services
-      let miLed;
+      let status;
       const db = getDatabase(app);
       const dbref = ref(db);
       get(child(dbref, "Test/")).then((answer) => {
-        console.log();
-        miLed = answer.val().LED;
+        status = answer.val().LED;
       });
 
       document.getElementById("submit").addEventListener("click", function (e) {
         e.preventDefault();
-        if (miLed) {
-          miLed = 0;
-        } else {
-          miLed = 1;
-        }
+        status = status ? 0 : 1;
+        // if (miLed) {
+        //   miLed = 0;
+        // } else {
+        //   miLed = 1;
+        // }
         set(ref(db, "Test/"), {
-          LED: miLed,
+          LED: status,
         });
         // set(ref(db, "user/" + document.getElementById("username").value), {
         //   username: document.getElementById("username").value,
