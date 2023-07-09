@@ -10,21 +10,11 @@
   <body>
     <div class="box">
       <div class="form">
-        <h2>Login Form</h2>
+        <h2>Automatizacion</h2>
         <form>
-          <div class="inputbox">
-            <input type="text" value="" id="username" required />
-            <span>username</span>
-          </div>
-          <div class="inputbox">
-            <input type="email" value="" id="email" required />
-            <span>E-mail</span>
-          </div>
-          <div class="inputbox">
-            <input type="text" value="" id="phone" required />
-            <span>Phone Number</span>
-          </div>
-          <input type="submit" value="submit" class="sub" id="submit" />
+          <button type="submit" value="submit" class="sub" id="submit">
+            CLICK
+          </button>
         </form>
       </div>
     </div>
@@ -60,24 +50,23 @@
         status = answer.val().LED;
       });
 
+      if (status) {
+        document.getElementById("submit").setAttribute("active", "false");
+      } else {
+        document.getElementById("submit").setAttribute("active", "true");
+      }
+
       document.getElementById("submit").addEventListener("click", function (e) {
         e.preventDefault();
         status = status ? 0 : 1;
-        // if (miLed) {
-        //   miLed = 0;
-        // } else {
-        //   miLed = 1;
-        // }
         set(ref(db, "Test/"), {
           LED: status,
         });
-        // set(ref(db, "user/" + document.getElementById("username").value), {
-        //   username: document.getElementById("username").value,
-        //   email: document.getElementById("email").value,
-        //   PhoneNumber: document.getElementById("phone").value,
-        // });
-
-        //alert("Login Sucessfull  !");
+        if (status) {
+          document.getElementById("submit").innerHTML = "Apagar";
+        } else {
+          document.getElementById("submit").innerHTML = "Encender";
+        }
       });
     </script>
   </body>
